@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Demo app</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Home fragment</string>
+    <string name="second_fragment_label">Profile Fragment</string>
+</resources>

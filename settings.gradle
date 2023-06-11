@@ -1,0 +1,9 @@
+include ':app'
+rootProject.name = "DaggerHiltExample"
+
+
+include ':common:core'
+include ':common:design_system'
+include ':common:shared'
+include ':features:profile'
+include ':features:home_screen'
