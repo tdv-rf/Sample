@@ -7,6 +7,7 @@ plugins {
 
 apply {
     from("$rootDir/build_logic/common_module.gradle")
+    from("$rootDir/build_logic/compose_module.gradle")
 }
 
 android {
@@ -15,6 +16,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(path: ':common:core')
+    implementation project(path: ':common:shared')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

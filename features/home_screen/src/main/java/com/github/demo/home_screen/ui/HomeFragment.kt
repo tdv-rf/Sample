@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.github.demo.design_system.theme.DemoTheme
 import com.github.demo.home_screen.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,9 +32,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return ComposeView(requireContext()).apply {
-            setContent {
+    ) = ComposeView(requireContext()).apply {
+        setContent {
+            DemoTheme {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
@@ -41,7 +42,7 @@ class HomeFragment : Fragment() {
                 ) {
                     Text(
                         text = "HomeFragment",
-                        style = MaterialTheme.typography.h2
+                        style = MaterialTheme.typography.h3
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
@@ -53,6 +54,7 @@ class HomeFragment : Fragment() {
                     ) {
                         Text(
                             text = "Navigate to profile",
+                            color = DemoTheme.extendedColors.textPrimary,
                             style = MaterialTheme.typography.body1
                         )
                     }

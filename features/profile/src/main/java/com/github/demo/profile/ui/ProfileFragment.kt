@@ -1,8 +1,8 @@
 package com.github.demo.profile.ui
 
+import TextLineDropDownMenu
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +13,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.github.demo.design_system.theme.DemoTheme
 import com.github.demo.profile.R
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,10 +34,10 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return ComposeView(requireContext()).apply {
-            setContent {
-
+    ) = ComposeView(requireContext()).apply {
+        setContent {
+            DemoTheme {
+                val state = viewModel.state.collectAsState()
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
@@ -43,7 +45,16 @@ class ProfileFragment : Fragment() {
                 ) {
                     Text(
                         text = "ProfileFragment",
-                        style = MaterialTheme.typography.h2
+                        style = MaterialTheme.typography.h3
+                    )
+                    Spacer(modifier = Modifier.height(48.dp))
+                    TextLineDropDownMenu(
+                        title = "",
+                        itemList = state.value.themeList,
+                        selectedItemPos = state.value.selectedPosition,
+                        onItemSelected = { position ->
+                            viewModel.onThemeSelected(position)
+                        }
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
@@ -55,14 +66,15 @@ class ProfileFragment : Fragment() {
                     ) {
                         Text(
                             text = "Navigate to home screen",
+                            color = DemoTheme.extendedColors.textPrimary,
                             style = MaterialTheme.typography.body1
                         )
                     }
                 }
+            }
 
-                SideEffect {
-                    viewModel.printCommnunicatorUseCaseHashCode()
-                }
+            SideEffect {
+                viewModel.printCommnunicatorUseCaseHashCode()
             }
         }
     }
