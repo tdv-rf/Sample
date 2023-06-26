@@ -12,16 +12,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.github.demo.design_system.theme.DemoTheme
 import com.github.demo.home_screen.R
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -49,7 +53,7 @@ class HomeFragment : Fragment() {
                         onClick = {
                             this@HomeFragment
                                 .findNavController()
-                                .navigate(R.id.profile_screen)
+                                .navigate(resId = R.id.profile_screen)
                         }
                     ) {
                         Text(
@@ -60,11 +64,9 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
+            SideEffect {
+                viewModel.go()
+            }
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.printAllMessages()
     }
 }

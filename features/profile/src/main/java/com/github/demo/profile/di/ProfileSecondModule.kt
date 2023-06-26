@@ -10,16 +10,8 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class ProfileModule {
-
-    @ProfileMessage
-    @Provides
-    fun provideProfileMessage(): String {
-        return "Это сообщение модулю Профиль"
-    }
+class ProfileSecondModule {
 
     @Provides
-    fun getRandom(bundle: Bundle): Random {
-        return Random()
-    }
+    fun getBundle(): Bundle = Bundle()
 }

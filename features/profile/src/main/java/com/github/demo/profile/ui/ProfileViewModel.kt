@@ -11,8 +11,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val communicatorUseCase: CommunicatorUseCase
+    private val communicatorUseCase: CommunicatorUseCase,
 ) : ViewModel() {
+
+    init {
+        println("New instance ProfileViewModel")
+    }
+
 
     val state: MutableStateFlow<ProfileState> = MutableStateFlow(
         value = ProfileState(
@@ -36,8 +41,8 @@ class ProfileViewModel @Inject constructor(
         )
     }
 
-    fun printCommnunicatorUseCaseHashCode() {
-        println("ProfileViewModel communicatorUseCase instance ${communicatorUseCase.hashCode()}")
+    fun go() {
+        println("communicatorUseCase ${communicatorUseCase.hashCode()}")
     }
 
 }

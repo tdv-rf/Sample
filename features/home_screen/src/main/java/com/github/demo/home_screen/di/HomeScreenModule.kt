@@ -1,6 +1,7 @@
 package com.github.demo.home_screen.di
 
 import com.github.demo.core.di.qualifiers.HomeScreenMessage
+import com.github.demo.home_screen.domain.NoDefaultInitUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +17,8 @@ class HomeScreenModule {
     fun provideProfileMessage(): String {
         return "Это сообщение модуля Home screen"
     }
+
+    @Provides
+    fun provideNoDefaultInitUseCase(): NoDefaultInitUseCaseImpl = NoDefaultInitUseCaseImpl()
 
 }

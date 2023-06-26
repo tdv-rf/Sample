@@ -59,9 +59,10 @@ class ProfileFragment : Fragment() {
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = {
-                            this@ProfileFragment
-                                .findNavController()
-                                .navigate(R.id.home_screen)
+                            findNavController().popBackStack()
+//                            this@ProfileFragment
+//                                .findNavController()
+//                                .navigate(R.id.home_screen)
                         }
                     ) {
                         Text(
@@ -74,7 +75,7 @@ class ProfileFragment : Fragment() {
             }
 
             SideEffect {
-                viewModel.printCommnunicatorUseCaseHashCode()
+                viewModel.go()
             }
         }
     }

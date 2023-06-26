@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 class CommunicatorUseCaseImpl: CommunicatorUseCase {
 
     init {
-        println("IDDQD new instance CommunicatorUseCase")
+//        println("New instance CommunicatorUseCase")
     }
 
     private val _statusFlow: MutableStateFlow<Status?> = MutableStateFlow(null)
